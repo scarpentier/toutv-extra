@@ -27,8 +27,8 @@ namespace toutv
         public Login()
         {
             this.IsCommand("login", "Login to the tou.tv service and writes the resulting access token on disk");
-            this.HasRequiredOption("u=", "User email", x => UserEmail = x);
-            this.HasRequiredOption("p=", "User password", x => UserPassword = x);            
+            this.HasRequiredOption("u=|user", "User email", x => UserEmail = x);
+            this.HasRequiredOption("p=|pass", "User password", x => UserPassword = x);            
         }
 
         public override int Run(string[] remainingArguments)

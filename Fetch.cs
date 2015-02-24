@@ -23,7 +23,7 @@ namespace toutv
         public Fetch()
         {
             this.IsCommand("fetch", "Download a media");
-            this.HasRequiredOption("m=", "tou.tv slug to the media. Look at the tou.tv website Ex: infoman/S15E23", x => MediaUrl = x);
+            this.HasRequiredOption("m=|media", "tou.tv slug to the media. Look at the tou.tv website Ex: infoman/S15E23", x => MediaUrl = x);
         }
 
         public override int Run(string[] remainingArguments)

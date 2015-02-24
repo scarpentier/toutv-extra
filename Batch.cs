@@ -11,11 +11,13 @@ namespace toutv
     public class Batch : ConsoleCommand
     {
         public string Show { get; set; }
+        public string Season { get; set; }
 
         public Batch()
         {
             this.IsCommand("batch", "Batch downloads a TV Show");
-            this.HasRequiredOption("show=", "TV Show to download", x => Show = x);
+            this.HasRequiredOption("s=|show", "TV Show to download", x => Show = x);
+            this.HasOption("season=", "Limits the batch download to a single season. Use the 'season name'", x => Season = x);
         }
 
         public override int Run(string[] remainingArguments)
@@ -25,6 +27,14 @@ namespace toutv
 
             foreach (var season in showdata["SeasonLineups"])
             {
+                var seasonName = season["Name"].Value<string>();
+                
+                // Only download specified season if present
+                if (!string.IsNullOrEmpty(Season) && seasonName != Season)
+                    continue;
+
+                Console.WriteLine("Downloading season name: \"{0}\"", seasonName);
+
                 foreach (var episode in season["LineupItems"])
                 {
                     Console.WriteLine("Getting {0} {1}", season["Title"].Value<string>(), episode["Title"].Value<string>());
