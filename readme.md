@@ -15,14 +15,16 @@ Downloads a show from the service.
 	toutv fetch -m la-guerre-des-tuques
 	toutv fetch -m infoman/S15E23
 
-`-m` is the the slug from the tou.tv website. `http://ici.tou.tv/30-vies/S05E89` becomes `30-vies/S05E89`
+`-m` or `--media` is the the slug from the tou.tv website. `http://ici.tou.tv/30-vies/S05E89` becomes `30-vies/S05E89`
 
 ### Batch
 Downloads all the available episodes from a show, skipping already downloaded files.
 
-	toutv batch -s 19-2
+	toutv batch -s 19-2 --season season-2
 
-`-s` is the name of the show, again in slug format. Eg: `la-facture`
+`-s` or `--show` is the name of the show, in slug format. Eg: `la-facture`
+
+`--season` is the season to download *(optional)*
 
 ## Requirements
 * .NET 4.5
