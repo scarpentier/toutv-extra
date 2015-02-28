@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Net;
+using System.Text;
 
 using ManyConsole;
 
@@ -22,10 +23,10 @@ namespace toutv
 
         public override int Run(string[] remainingArguments)
         {
-            var client = new WebClient();
-            var showdata = JObject.Parse(client.DownloadString(string.Format("http://ici.tou.tv/presentation/{0}?excludeLineups=False&v=2&d=phone-android", Show)));
+            var stringData = Encoding.UTF8.GetString(new WebClient().DownloadData(string.Format("http://ici.tou.tv/presentation/{0}?excludeLineups=False&v=2&d=phone-android", Show)));
+            var showData = JObject.Parse(stringData);
 
-            foreach (var season in showdata["SeasonLineups"])
+            foreach (var season in showData["SeasonLineups"])
             {
                 var seasonName = season["Name"].Value<string>();
                 
