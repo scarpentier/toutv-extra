@@ -1,7 +1,9 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
+using System.Text;
 
 using ManyConsole;
 
@@ -29,7 +31,8 @@ namespace toutv
         public override int Run(string[] remainingArguments)
         {
             // Get media metadata
-            var metaData = new MediaMetaData(JObject.Parse(new WebClient().DownloadString(string.Format(UrlGetMediaMetadata, MediaUrl))));
+            var stringData = Encoding.UTF8.GetString(new WebClient().DownloadData(string.Format(UrlGetMediaMetadata, MediaUrl)));
+            var metaData = new MediaMetaData(JObject.Parse(stringData));
           
             // Get what would be the resulting output filename and check if the file already exists
             var outputFileName = GetOutputFileName(metaData);
@@ -72,7 +75,17 @@ namespace toutv
                     Arguments = string.Format("-i \"{0}\" -c copy \"{1}\"", url, outputFileName)
                 }
             };
-            process.Start();
+
+            try
+            {
+                process.Start();
+            }
+            catch (Win32Exception ex)
+            {
+                Console.WriteLine("[ERROR] Could not find ffmpeg installed on your system.");
+                return 0;
+            }
+
             process.WaitForExit();
 
             return 0;
