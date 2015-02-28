@@ -3,22 +3,26 @@ This simple command-line tool will allow you to download individual episodes or 
 
 ## Usage
 ### Login
+
+
 Authenticates against the tou.tv oauth service provider. You *must* use this command the first time.
 
-`toutv login -u user@domain.com -p password` 
+	toutv login -u user@domain.com -p password
 
 ### Fetch
-Downloads a show from the service. Use the slug from the tou.tv website.
+Downloads a show from the service. 
 
-`http://ici.tou.tv/30-vies/S05E89` becomes `30-vies/S05E89`
+	toutv fetch -m la-guerre-des-tuques
+	toutv fetch -m infoman/S15E23
 
-`toutv fetch -m la-guerre-des-tuques`
-`toutv fetch -m infoman/S15E23`
+`-m` is the the slug from the tou.tv website. `http://ici.tou.tv/30-vies/S05E89` becomes `30-vies/S05E89`
 
 ### Batch
 Downloads all the available episodes from a show, skipping already downloaded files.
 
-* `toutv batch --show 19-2`
+	toutv batch -s 19-2
+
+`-s` is the name of the show, again in slug format. Eg: `la-facture`
 
 ## Requirements
 * .NET 4.5
