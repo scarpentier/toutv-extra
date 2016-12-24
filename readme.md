@@ -1,6 +1,8 @@
 # Toutv Extra Downloader
 This simple command-line tool will allow you to download individual episodes or whole tv shows from Radio-Canada's online service, tou.tv.
 
+Please note that this application will not allow you to download shows that are *only* available through Extra. Those are streamed through a second API that implements [Widevine](http://www.widevine.com/) encryption.
+
 ## Usage
 ### Login
 
