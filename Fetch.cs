@@ -94,6 +94,10 @@ namespace toutv
         private static string GetOutputFileName(MediaMetaData metaData)
         {
             var outputfilename = string.Format("{0} {1}{2}", metaData.Title, metaData.Saison, metaData.Episode).Trim();
+
+            foreach (var c in Path.GetInvalidFileNameChars())
+                outputfilename = outputfilename.Replace(c, '_');
+
             return outputfilename + ".ts";
         }
     }
