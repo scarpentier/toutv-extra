@@ -18,9 +18,9 @@ namespace toutv
 
         private const string UrlGetClaims = "https://services.radio-canada.ca/media/validation/v2/GetClaims?token={0}";
         private const string UrlGetMediaMetadata = "http://ici.tou.tv/presentation/{0}?excludeLineups=True&v=2&d=phone-android";
-        private const string UrlGetMediaPlaylist = "https://services.radio-canada.ca/media/validation/v2/?appCode=toutv&deviceType=iphone4&connectionType=wifi&idMedia={0}&claims={1}&output=json";
+        private const string UrlGetMediaPlaylist = "https://services.radio-canada.ca/media/validation/v2/?appCode=toutv&deviceType=androidcenc&connectionType=wifi&idMedia={0}&claims={1}&output=json&deviceId=8XV5T15A23003790";
 
-        private const string UserAgent = "TouTvApp/2.1.2.2 (samsung/jgedlteue/(SGH-I337M); API/19/-/Kitkat; en-ca)";
+        private const string UserAgent = "TouTvApp/2.4.0.3 (Huawei/angler/(Nexus/6P); 6.0.1/-/API23; en-us)";
 
         public Fetch()
         {
@@ -43,7 +43,7 @@ namespace toutv
             }
 
             // Read the access_token from the token file
-            var accessToken = JsonConvert.DeserializeObject(File.ReadAllText("token.json"));
+            var accessToken = File.ReadAllText(".toutv_token");
 
             // Exhange the access_token for a user claims
             var request1 = WebRequest.CreateHttp(string.Format(UrlGetClaims, accessToken));
