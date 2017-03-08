@@ -72,7 +72,7 @@ namespace toutv
                 StartInfo = new ProcessStartInfo
                 {
                     FileName = "ffmpeg",
-                    Arguments = string.Format("-i \"{0}\" -c copy \"{1}\"", url, outputFileName)
+                    Arguments = string.Format("-i \"{0}\" -movflags faststart -sn -c copy \"{1}\"", url, outputFileName)
                 }
             };
 
@@ -98,7 +98,7 @@ namespace toutv
             foreach (var c in Path.GetInvalidFileNameChars())
                 outputfilename = outputfilename.Replace(c, '_');
 
-            return outputfilename + ".ts";
+            return outputfilename + ".mp4";
         }
     }
 
